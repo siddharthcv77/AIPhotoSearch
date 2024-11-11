@@ -10,8 +10,8 @@ s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
     # Replace 'your-username' and 'your-password' with OpenSearch credentials if using basic authentication
-    username = 'Siddharth'
-    password = 'Sansid@22'
+    username = '' #enter opensearch username
+    password = '' #enter opensearch password
 
     # OpenSearch client with Basic Authentication
     es = OpenSearch(
