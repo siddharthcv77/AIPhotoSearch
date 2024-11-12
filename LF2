@@ -1,0 +1,59 @@
+import boto3
+from opensearchpy import OpenSearch, RequestsHttpConnection
+from requests_aws4auth import AWS4Auth
+import json
+
+# Initialize AWS and OpenSearch clients
+region = 'us-east-1'  # Update to your OpenSearch region
+credentials = boto3.Session().get_credentials()
+awsauth = AWS4Auth(credentials.access_key, credentials.secret_key, region, 'es', session_token=credentials.token)
+
+# Initialize OpenSearch client
+es = OpenSearch(
+    hosts=[{'host': 'search-photos-awoom3ry36u4qhdswftakubfae.us-east-1.es.amazonaws.com', 'port': 443}],
+    http_auth=awsauth,
+    use_ssl=True,
+    verify_certs=True,
+    connection_class=RequestsHttpConnection
+)
+
+def lambda_handler(event, context):
+    # Extract the search query from the event
+    query_text = event['queryStringParameters']['q']
+    print(f"Search query: {query_text}")
+
+    # Analyze the query with Amazon Lex (optional if Lex bot is linked directly)
+    lex = boto3.client('lex-runtime')
+    response = lex.post_text(
+        botName='PhotoSearchBot',
+        botAlias='$LATEST',
+        userId='user',
+        inputText=query_text
+    )
+    
+    # Extract keywords from Lex response
+    keywords = [response['slots'][slot] for slot in response['slots'] if response['slots'][slot]]
+    print(f"Extracted keywords: {keywords}")
+
+    # Construct OpenSearch query
+    search_query = {
+        "query": {
+            "bool": {
+                "should": [{"match": {"labels": keyword}} for keyword in keywords]
+            }
+        }
+    }
+    print(f"OpenSearch query: {json.dumps(search_query)}")
+
+    # Execute the search
+    results = es.search(index="photos", body=search_query)
+    print(f"Search results: {json.dumps(results)}")
+
+    # Format and return results
+    image_keys = [hit['_source']['objectKey'] for hit in results['hits']['hits']]
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "results": image_keys
+        })
+    }
