@@ -2,13 +2,22 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.8 # Adjust based on your Lambda runtime
+      python: 3.8
+    commands:
+      - echo "Installing AWS CLI"
+      - pip install awscli --upgrade
   build:
     commands:
-      - echo "Building LF1"
+      - echo "Packaging LF1..."
       - zip -r lf1.zip ./LF1
-      - echo "Building LF2"
+      - echo "Packaging LF2..."
       - zip -r lf2.zip ./LF2
+  post_build:
+    commands:
+      - echo "Deploying LF1..."
+      - aws lambda update-function-code --function-name LF1 --zip-file fileb://lf1.zip
+      - echo "Deploying LF2..."
+      - aws lambda update-function-code --function-name LF2 --zip-file fileb://lf2.zip
 artifacts:
   files:
     - lf1.zip
