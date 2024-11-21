@@ -10,8 +10,8 @@ s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
     # Replace 'your-username' and 'your-password' with OpenSearch credentials if using basic authentication
-    username = '' #enter opensearch username
-    password = '' #enter opensearch password
+    username = 'Siddharth'
+    password = 'Sansid@22'
 
     # OpenSearch client with Basic Authentication
     es = OpenSearch(
@@ -54,5 +54,3 @@ def lambda_handler(event, context):
     # Index the document in OpenSearch
     es.index(index="photos", id=object_key, body=document)
     print("Document indexed successfully.")
-    
-    return {"status": "success"}
