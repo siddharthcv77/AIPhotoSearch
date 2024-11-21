@@ -2,14 +2,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.8
-    commands:
-      - pip install -r requirements.txt -t .
+      python: 3.8 # Adjust based on your Lambda runtime
   build:
     commands:
-      - echo "Building Lambda function"
+      - echo "Building LF1"
+      - zip -r lf1.zip ./LF1
+      - echo "Building LF2"
+      - zip -r lf2.zip ./LF2
 artifacts:
   files:
-    - '**/*'
-    - '!README.md'
-    - '!tests/*'
+    - lf1.zip
+    - lf2.zip
