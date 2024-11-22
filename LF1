@@ -54,3 +54,5 @@ def lambda_handler(event, context):
     # Index the document in OpenSearch
     es.index(index="photos", id=object_key, body=document)
     print("Document indexed successfully.")
+    
+    return {"status": "success"}
