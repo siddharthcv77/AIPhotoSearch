@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - echo "Copying frontend files..."
+      - mkdir frontend
+      - cp app.js index.html style.css frontend/
+artifacts:
+  files:
+    - frontend/*
