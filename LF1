@@ -4,6 +4,8 @@ from datetime import datetime
 from requests_aws4auth import AWS4Auth
 from opensearchpy import OpenSearch, RequestsHttpConnection
 
+# testing pipeline
+
 # Initialize AWS clients
 rekognition = boto3.client('rekognition')
 s3 = boto3.client('s3')
@@ -56,5 +58,3 @@ def lambda_handler(event, context):
     print("Document indexed successfully.")
     
     return {"status": "success"}
-
-# testing pipeline
