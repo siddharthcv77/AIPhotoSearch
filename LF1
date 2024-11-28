@@ -21,7 +21,7 @@ def lambda_handler(event, context):
         verify_certs=True,
         connection_class=RequestsHttpConnection
     )
-    
+   
     # Extract bucket and object key from the event
     bucket = event['Records'][0]['s3']['bucket']['name']
     object_key = event['Records'][0]['s3']['object']['key']
