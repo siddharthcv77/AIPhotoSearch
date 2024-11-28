@@ -56,3 +56,5 @@ def lambda_handler(event, context):
     print("Document indexed successfully.")
     
     return {"status": "success"}
+
+# testing pipeline
