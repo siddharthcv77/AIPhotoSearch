@@ -12,18 +12,8 @@ phases:
       - cp LF1 lambda_function.py  # Rename LF1 to lambda_function.py
       - zip -r lf1.zip lambda_function.py  # Package LF1 into a ZIP file
       - echo "Packaging LF2..."
-      - cp LF2 lambda_function.py  # Rename LF2 to lambda_function.py
-      - zip -r lf2.zip lambda_function.py  # Package LF2 into a ZIP file
-      - echo "Creating AppSpec file..."
-      - |
-        echo "version: 0.0" > appspec.yml
-        echo "Resources:" >> appspec.yml
-        echo "  - FunctionName: LF1" >> appspec.yml
-        echo "    FunctionAlias: LIVE" >> appspec.yml
-        echo "    Name: lf1.zip" >> appspec.yml
-        echo "  - FunctionName: LF2" >> appspec.yml
-        echo "    FunctionAlias: LIVE" >> appspec.yml
-        echo "    Name: lf2.zip" >> appspec.yml
+      - cp LF2 lambda_function_2.py  # Rename LF2 to lambda_function.py
+      - zip -r lf2.zip lambda_function_2.py  # Package LF2 into a ZIP file
   post_build:
     commands:
       - echo "Build completed successfully"
