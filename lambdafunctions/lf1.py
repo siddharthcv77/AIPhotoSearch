@@ -9,7 +9,6 @@ rekognition = boto3.client('rekognition')
 s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
-    # Replace 'your-username' and 'your-password' with OpenSearch credentials if using basic authentication
     username = 'Siddharth'
     password = 'temp_password@123'
 
