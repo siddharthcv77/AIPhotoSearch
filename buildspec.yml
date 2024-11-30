@@ -3,17 +3,10 @@ phases:
   install:
     runtime-versions:
       python: 3.8
-    commands:
-      - echo "Installing AWS CLI"
-      - pip install awscli --upgrade
   build:
     commands:
-      - echo "Packaging LF1..."
       - cp LF1 lambda_function.py
       - zip -r lf1.zip lambda_function.py
-      - echo "Packaging LF2..."
-      - cp LF2 lambda_function_2.py
-      - zip -r lf2.zip lambda_function_2.py
   post_build:
     commands:
       - echo "Build completed successfully"
@@ -21,4 +14,3 @@ artifacts:
   files:
     - appspec.yml
     - lf1.zip
-    - lf2.zip
