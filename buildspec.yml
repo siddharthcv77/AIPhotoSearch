@@ -6,7 +6,7 @@ phases:
     commands:
       - echo "Installing AWS CLI"
       - pip install awscli --upgrade
-    build:
+  build:
     commands:
       - echo "Packaging LF1..."
       - cp LF1 lambda_function.py  # Rename LF1 to lambda_function.py
