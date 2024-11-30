@@ -1,0 +1,6 @@
+version: 0.0
+Resources:
+  - FunctionName: LF1
+    Name: lf1.zip
+  - FunctionName: LF2
+    Name: lf2.zip
