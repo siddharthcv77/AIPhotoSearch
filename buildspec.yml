@@ -2,7 +2,7 @@ version: 0.2
 phases:
   install:
     commands:
-      echo: "Installing dependencies"
+      echo "Installing dependencies"
   build:
     commands:
       - echo "Zipping the Lambda function and AppSpec file"
