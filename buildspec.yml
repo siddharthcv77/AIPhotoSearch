@@ -14,13 +14,23 @@ phases:
       - echo "Packaging LF2..."
       - cp LF2 lambda_function.py  # Rename LF2 to lambda_function.py
       - zip -r lf2.zip lambda_function.py  # Package LF2 into a ZIP file
+      - echo "Creating AppSpec file..."
+      - |
+        cat <<EOF > appspec.yml
+        version: 0.0
+        Resources:
+          - FunctionName: LF1
+            FunctionAlias: LIVE
+            Name: lf1.zip
+          - FunctionName: LF2
+            FunctionAlias: LIVE
+            Name: lf2.zip
+        EOF
   post_build:
     commands:
-      - echo "Deploying LF1..."
-      - aws lambda update-function-code --function-name LF1 --zip-file fileb://lf1.zip
-      - echo "Deploying LF2..."
-      - aws lambda update-function-code --function-name LF2 --zip-file fileb://lf2.zip
+      - echo "Build completed successfully"
 artifacts:
   files:
+    - appspec.yml
     - lf1.zip
     - lf2.zip
