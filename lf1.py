@@ -55,4 +55,4 @@ def lambda_handler(event, context):
     es.index(index="photos", id=object_key, body=document)
     print("Document indexed successfully.")
     
-    return {"status": "success"} 
+    return {"status": "success"}
