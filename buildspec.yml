@@ -6,7 +6,7 @@ phases:
     commands:
       - echo "Installing AWS CLI"
       - pip install awscli --upgrade
-  build:
+    build:
     commands:
       - echo "Packaging LF1..."
       - cp LF1 lambda_function.py  # Rename LF1 to lambda_function.py
@@ -16,16 +16,14 @@ phases:
       - zip -r lf2.zip lambda_function.py  # Package LF2 into a ZIP file
       - echo "Creating AppSpec file..."
       - |
-        cat <<EOF > appspec.yml
-        version: 0.0
-        Resources:
-          - FunctionName: LF1
-            FunctionAlias: LIVE
-            Name: lf1.zip
-          - FunctionName: LF2
-            FunctionAlias: LIVE
-            Name: lf2.zip
-        EOF
+        echo "version: 0.0" > appspec.yml
+        echo "Resources:" >> appspec.yml
+        echo "  - FunctionName: LF1" >> appspec.yml
+        echo "    FunctionAlias: LIVE" >> appspec.yml
+        echo "    Name: lf1.zip" >> appspec.yml
+        echo "  - FunctionName: LF2" >> appspec.yml
+        echo "    FunctionAlias: LIVE" >> appspec.yml
+        echo "    Name: lf2.zip" >> appspec.yml
   post_build:
     commands:
       - echo "Build completed successfully"
