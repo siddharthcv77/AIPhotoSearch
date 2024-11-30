@@ -6,4 +6,4 @@ Resources:
         Name: "LF1"
         Alias: "Prod"
         CurrentVersion: "1"
-        TargetVersion: "2"
+        TargetVersion: "1"
