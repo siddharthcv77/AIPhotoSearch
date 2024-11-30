@@ -5,7 +5,6 @@ phases:
       python: 3.8
   build:
     commands:
-      - cp lambda_function.py lambda_function.py
       - zip -r lf1.zip lambda_function.py
   post_build:
     commands:
