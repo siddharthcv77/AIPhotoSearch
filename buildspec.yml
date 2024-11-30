@@ -5,9 +5,14 @@ phases:
       echo "Installing dependencies"
   build:
     commands:
-      - echo "Zipping the Lambda function and AppSpec file"
+      - echo "Renaming lf1.py to lambda_function.py and zipping the first Lambda function"
+      - mv lf1.py lambda_function.py
       - zip -r lf1.zip lambda_function.py appspec.yml
+      - echo "Renaming lf2.py to lambda_function.py and zipping the second Lambda function"
+      - mv lf2.py lambda_function.py
+      - zip -r lf2.zip lambda_function.py appspec.yml
 artifacts:
   files:
     - lf1.zip
+    - lf2.zip
     - appspec.yml
