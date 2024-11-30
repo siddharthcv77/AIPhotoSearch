@@ -1,15 +1,13 @@
 version: 0.2
 phases:
   install:
-    runtime-versions:
-      python: 3.8
+    commands:
+      echo: "Installing dependencies"
   build:
     commands:
-      - zip -r lf1.zip lambda_function.py
-  post_build:
-    commands:
-      - echo "Build completed successfully"
+      - echo "Zipping the Lambda function and AppSpec file"
+      - zip -r lf1.zip lambda_function.py appspec.yml
 artifacts:
   files:
-    - appspec.yml
     - lf1.zip
+    - appspec.yml
