@@ -1,4 +1,6 @@
 version: 0.0
 Resources:
-  - FunctionName: LF1
-    Name: lf1.zip
+  - myLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      Name: "LF1"      
