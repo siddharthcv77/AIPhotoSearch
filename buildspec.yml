@@ -9,11 +9,11 @@ phases:
   build:
     commands:
       - echo "Packaging LF1..."
-      - cp LF1 lambda_function.py  # Rename LF1 to lambda_function.py
-      - zip -r lf1.zip lambda_function.py  # Package LF1 into a ZIP file
+      - cp LF1 lambda_function.py
+      - zip -r lf1.zip lambda_function.py
       - echo "Packaging LF2..."
-      - cp LF2 lambda_function_2.py  # Rename LF2 to lambda_function.py
-      - zip -r lf2.zip lambda_function_2.py  # Package LF2 into a ZIP file
+      - cp LF2 lambda_function_2.py
+      - zip -r lf2.zip lambda_function_2.py
   post_build:
     commands:
       - echo "Build completed successfully"
