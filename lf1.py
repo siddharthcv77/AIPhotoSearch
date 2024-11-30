@@ -4,8 +4,6 @@ from datetime import datetime
 from requests_aws4auth import AWS4Auth
 from opensearchpy import OpenSearch, RequestsHttpConnection
 
-# testing pipeline
-
 # Initialize AWS clients
 rekognition = boto3.client('rekognition')
 s3 = boto3.client('s3')
