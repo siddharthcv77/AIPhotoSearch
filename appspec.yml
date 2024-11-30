@@ -4,3 +4,6 @@ Resources:
       Type: AWS::Lambda::Function
       Properties:
         Name: "LF1"
+        Alias: "Prod"
+        CurrentVersion: "1"
+        TargetVersion: "2"
