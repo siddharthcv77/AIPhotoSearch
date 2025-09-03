@@ -5,7 +5,7 @@ import json
 # Initialize OpenSearch client with Basic Authentication
 es = OpenSearch(
     hosts=[{'host': 'search-photos-awoom3ry36u4qhdswftakubfae.us-east-1.es.amazonaws.com', 'port': 443}],
-    http_auth=('Siddharth', 'temp_password@123'),  # Basic authentication
+    http_auth=('Siddharth', ''),  # Basic authentication
     use_ssl=True,
     verify_certs=True,
     connection_class=RequestsHttpConnection
